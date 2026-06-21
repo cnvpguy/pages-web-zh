@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 再访笔记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f3f0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            color: #2e2b28;
+            line-height: 1.7;
+        }
+
+        /* 深色头图 – 沉静氛围 */
+        .hero {
+            background: linear-gradient(145deg, #1e1c1a 0%, #2b2722 100%);
+            padding: 4.5rem 2rem 3.8rem;
+            text-align: center;
+            color: #e6ddd3;
+            position: relative;
+            border-bottom: 4px solid #c9a87c;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 350;
+            letter-spacing: 2px;
+            margin-bottom: 0.6rem;
+            word-break: break-word;
+        }
+
+        .hero h1 span {
+            font-weight: 500;
+            color: #e1c39b;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #bcb0a2;
+            max-width: 560px;
+            margin: 1rem auto 0.5rem;
+            border-top: 1px solid #4a423b;
+            padding-top: 1.2rem;
+        }
+
+        .tagline {
+            margin-top: 1.8rem;
+            display: inline-block;
+            background: rgba(201, 168, 124, 0.18);
+            padding: 0.3rem 1.8rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #cdbbaa;
+            letter-spacing: 1px;
+        }
+
+        /* 浅色正文区 – 柔和卡片呼吸感 */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2.8rem 1.5rem 4rem;
+        }
+
+        .intro-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.2rem 2rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.02);
+            margin-bottom: 2.4rem;
+            border: 1px solid #eae5df;
+        }
+
+        .intro-card h2 {
+            font-size: 1.6rem;
+            font-weight: 410;
+            color: #372f29;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.2rem;
+            border-left: 4px solid #c9a87c;
+            padding-left: 1.2rem;
+        }
+
+        .intro-card p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            color: #3d3833;
+        }
+
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        a {
+            color: #876f52;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border 0.2s, color 0.2s;
+        }
+
+        a:hover {
+            color: #b48a60;
+            border-bottom: 1px solid #b48a60;
+        }
+
+        /* 目录感网格 layout */
+        .grid-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0 1.8rem;
+        }
+
+        .grid-item {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.6rem 1.5rem 1.8rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            border: 1px solid #eae5df;
+            transition: transform 0.1s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 18px rgba(0,0,0,0.04);
+        }
+
+        .grid-item h3 {
+            font-size: 1.25rem;
+            font-weight: 420;
+            color: #372f29;
+            border-bottom: 2px dotted #ddd6ce;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .grid-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .grid-item li {
+            margin-bottom: 0.7rem;
+            padding-left: 0.8rem;
+            border-left: 2px solid #d6c8b9;
+            color: #4b443e;
+            font-size: 0.95rem;
+        }
+
+        /* 提示区 + 相关信息区 组合 */
+        .notice-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2.2rem 0 1.5rem;
+        }
+
+        .notice-card {
+            flex: 1 1 240px;
+            background: #fcfaf7;
+            border-radius: 20px;
+            padding: 1.6rem 1.5rem;
+            border: 1px solid #e3dbd1;
+        }
+
+        .notice-card h4 {
+            font-size: 1.1rem;
+            font-weight: 460;
+            color: #4d3f32;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .notice-card p, .notice-card li {
+            font-size: 0.95rem;
+            color: #4b443e;
+        }
+
+        .notice-card ul {
+            padding-left: 1.2rem;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin: 2.4rem 0 1rem;
+            border: 1px solid #eae5df;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.3rem;
+            font-weight: 420;
+            color: #372f29;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .faq-item {
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #ede8e1;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item strong {
+            display: block;
+            color: #4d3f32;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .faq-item p {
+            color: #5b534b;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .footer-note {
+            margin-top: 3.5rem;
+            border-top: 1px solid #dbd2c8;
+            padding-top: 2rem;
+            text-align: center;
+            color: #7a7068;
+            font-size: 0.9rem;
+        }
+
+        .footer-note a {
+            color: #7a6b5c;
+            border-bottom: 1px solid transparent;
+        }
+
+        .footer-note a:hover {
+            border-bottom: 1px solid #a3876e;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .hero { padding: 3.2rem 1.2rem 2.8rem; }
+            .hero h1 { font-size: 2rem; }
+            .intro-card { padding: 1.8rem 1.2rem; }
+            .grid-sections { grid-template-columns: 1fr; }
+            .notice-area { flex-direction: column; }
+            .faq-mini { padding: 1.5rem 1.2rem; }
+        }
+
+        @media (min-width: 820px) {
+            .intro-card { padding: 2.5rem 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>再次遇见 · <span>爱游戏</span></h1>
+        <div class="sub">收藏、回顾、保持联系——你的习惯就是最好的路标</div>
+        <div class="tagline">「 持续关注 」</div>
+    </header>
+
+    <!-- 浅色正文区 -->
+    <main class="container">
+
+        <!-- 说明区 · 从再次访问切入 -->
+        <section class="intro-card">
+            <h2>有些站点值得常回来</h2>
+            <p>第一次打开 <a href="https://web-zh-aiyouxi.com.cn">爱游戏</a> 可能是偶然，但第二次、第三次就变成了习惯。页面不会主动提醒你更新了什么，所以偶尔点开，总会有小发现。无论是界面调整、内容轮换，还是新加入的小功能，都像朋友家换了副新窗帘——不张扬，但舒服。</p>
+            <p>我习惯把它放在浏览器书签栏的第二个文件夹里，和常读的站点放在一起。因为不需要每天访问，但每隔一两周打开，那种熟悉的节奏感还在。如果你也喜欢这种不打扰的陪伴，不妨把它加进收藏夹。</p>
+        </section>
+
+        <!-- 目录感布局：三个卡片 = 特点/场景/注意事项 -->
+        <div class="grid-sections">
+            <div class="grid-item">
+                <h3>▪ 日常场景</h3>
+                <ul>
+                    <li>午休前随便翻翻，不耗神</li>
+                    <li>等人时打开，两三分钟刚好</li>
+                    <li>整理收藏夹时顺便回顾</li>
+                    <li>想看点轻松内容的第一选择</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3>▪ 页面特点</h3>
+                <ul>
+                    <li>安静、不花哨，加载很快</li>
+                    <li>文字为主，信息直接</li>
+                    <li>没有频繁弹窗干扰</li>
+                    <li>结构稳定，每次回来都认得</li>
+                </ul>
+            </div>
+            <div class="grid-item">
+                <h3>▪ 适合谁</h3>
+                <ul>
+                    <li>不喜欢信息轰炸的人</li>
+                    <li>想找一个固定去处的人</li>
+                    <li>偶尔需要放松大脑的人</li>
+                    <li>习惯用书签管理网络生活的人</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 提示区 + 相关信息区 并列 -->
+        <div class="notice-area">
+            <div class="notice-card">
+                <h4>🔖 收藏小提示</h4>
+                <p>把 <a href="https://web-zh-aiyouxi.com.cn">爱游戏</a> 添加到浏览器书签时，建议修改书签名称为「爱游戏」三个字，简洁好找。移动端也可以添加到主屏幕，图标会显示为站点缩略图，方便识别。</p>
+            </div>
+            <div class="notice-card">
+                <h4>📎 相关信息</h4>
+                <ul>
+                    <li>站点不定期有内容调整</li>
+                    <li>没有邮件订阅，全靠主动访问</li>
+                    <li>适合在电脑和手机上都留个位置</li>
+                    <li>不需要注册或登录</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要区 -->
+        <div class="faq-mini">
+            <h3>❓ 可能想问的 · 摘要</h3>
+            <div class="faq-item">
+                <strong>为什么要把链接放在句子里？</strong>
+                <p>因为这样读起来自然，就像在说“我最近又去了 <a href="https://web-zh-aiyouxi.com.cn">爱游戏</a>，感觉挺不错的”，而不是生硬地给出一个入口。这种表达更贴近日常分享。</p>
+            </div>
+            <div class="faq-item">
+                <strong>页面会经常变化吗？</strong>
+                <p>不会大幅改版，更多是细节打磨。所以每次回来不用担心找不到方向，同时又保留了一点新鲜感。</p>
+            </div>
+            <div class="faq-item">
+                <strong>有没有必要每天都看？</strong>
+                <p>完全不需要。这类站点更适合想起来了就点开，或者每周固定一个时间。没有更新压力，也没有红点提示。</p>
+            </div>
+        </div>
+
+        <!-- 页脚 / 再次呼应 -->
+        <div class="footer-note">
+            <p>
+                如果你也习惯把喜欢的页面留在手边，不妨把 <a href="https://web-zh-aiyouxi.com.cn">爱游戏</a> 
+                放进书签栏。不打扰的陪伴，有时更长久。
+            </p>
+        </div>
+
+    </main>
+
+</body>
+</html>
