@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>米兰体育 · 信息卡片介绍</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f8f5f0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #2c2b28;
+      line-height: 1.7;
+      padding: 2rem 1.5rem;
+    }
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    /* header / hero */
+    .hero {
+      background: #eae5dc;
+      padding: 3rem 2rem;
+      border-radius: 28px;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 450;
+      letter-spacing: -0.02em;
+      color: #1f1e1b;
+      margin-bottom: 0.5rem;
+    }
+    .hero .sub {
+      font-size: 1.05rem;
+      color: #55534e;
+      border-left: 4px solid #bd9b7a;
+      padding-left: 1.2rem;
+      margin-top: 0.8rem;
+    }
+
+    /* 卡片通用 */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.6rem;
+      margin: 2.5rem 0;
+    }
+    .card {
+      background: #ffffffef;
+      border-radius: 24px;
+      padding: 1.6rem 1.4rem 1.8rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+      backdrop-filter: blur(2px);
+      transition: transform 0.15s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.6rem;
+      color: #3c3a36;
+      border-bottom: 2px solid #ddd6cb;
+      padding-bottom: 0.4rem;
+      display: inline-block;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #3f3d38;
+      margin-top: 0.5rem;
+    }
+    .badge {
+      display: inline-block;
+      background: #e1d9ce;
+      color: #2f2d28;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.65rem;
+      border-radius: 30px;
+      margin-right: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* 引言 / 引用块 */
+    .insight {
+      background: #f0ebe3;
+      padding: 1.8rem 2rem;
+      border-radius: 36px;
+      margin: 2.2rem 0;
+      border-left: 8px solid #b8a48c;
+      font-style: normal;
+    }
+    .insight p {
+      font-size: 1.05rem;
+      color: #3b3934;
+    }
+    .insight strong {
+      font-weight: 500;
+      color: #1f1c17;
+    }
+
+    /* 适合人群 卡片组微调 */
+    .audience-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 0.8rem;
+      margin: 1rem 0 0.3rem;
+    }
+    .audience-tags span {
+      background: #e8e1d6;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #2b2924;
+    }
+
+    /* 链接段落 */
+    .link-paragraph {
+      background: #f9f5ef;
+      padding: 1.4rem 1.8rem;
+      border-radius: 32px;
+      margin: 2rem 0;
+      font-size: 1rem;
+      border: 1px solid #e4dbcf;
+    }
+    .link-paragraph a {
+      color: #7f664b;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #bfaa93;
+      transition: border 0.1s;
+    }
+    .link-paragraph a:hover {
+      border-bottom: 2px solid #7f664b;
+    }
+
+    /* FAQ 摘要 */
+    .faq-mini {
+      background: #ffffffd9;
+      border-radius: 30px;
+      padding: 1.2rem 1.8rem 1.5rem;
+      margin: 2.2rem 0 1.8rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+    }
+    .faq-mini details {
+      margin: 0.6rem 0;
+      border-bottom: 1px solid #e2d9ce;
+      padding: 0.5rem 0;
+    }
+    .faq-mini summary {
+      font-weight: 500;
+      cursor: pointer;
+      color: #3f3b34;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+    .faq-mini summary::before {
+      content: "▸";
+      margin-right: 0.5rem;
+      color: #9a8877;
+      font-size: 1rem;
+    }
+    .faq-mini details[open] summary::before {
+      content: "▾";
+    }
+    .faq-mini .ans {
+      padding: 0.5rem 0 0.2rem 1.6rem;
+      color: #514d46;
+      font-size: 0.95rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 1rem; }
+      .hero { padding: 2rem 1.4rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .cards-grid { gap: 1rem; }
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e1d7cb;
+      font-size: 0.85rem;
+      color: #6d675d;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- hero -->
+  <div class="hero">
+    <h1>米兰体育 · 信息引导</h1>
+    <div class="sub">围绕运动资讯、赛事解读与日常训练内容，提供相对系统的信息参照。</div>
+  </div>
+
+  <!-- 介绍段 + 自然链接 -->
+  <p style="font-size: 1.05rem; margin-bottom: 1.2rem;">
+    如果你对体育内容有持续的阅读习惯，或许会留意到不同站点的整理方式与侧重点。
+    作为其中一个信息入口，<a href="https://main-milansport.com">米兰体育</a> 围绕运动赛事、训练方法以及运动文化做了相对清晰的分类，
+    适合希望快速查找资料或拓宽视野的用户。
+  </p>
+
+  <!-- 卡片区：用途卡片 -->
+  <div class="cards-grid">
+    <div class="card">
+      <h3>📋 赛事与数据</h3>
+      <p>涵盖多项主流运动的赛程、积分以及基础数据分析，便于赛前了解与赛后回顾。信息更新保持日常节奏。</p>
+      <span class="badge">足球</span><span class="badge">篮球</span><span class="badge">网球</span>
+    </div>
+    <div class="card">
+      <h3>🏋️ 训练与恢复</h3>
+      <p>从基础体能到专项训练，提供动作拆解、周期安排与恢复建议。适合教练、爱好者或自我提升者参考。</p>
+    </div>
+    <div class="card">
+      <h3>📖 运动文化与解读</h3>
+      <p>不只是比分和成绩，也关注运动背后的规则演变、人物故事与行业观察。适合对体育有深层兴趣的读者。</p>
+    </div>
+  </div>
+
+  <!-- 适合人群 卡片式呈现 (另一个角度) -->
+  <div style="display: flex; flex-wrap: wrap; gap: 1.2rem; margin: 1.8rem 0;">
+    <div class="card" style="flex: 1 1 180px;">
+      <h3>🧑‍🏫 运动教育者</h3>
+      <p>可借助站点内训练与战术内容作为教学补充，或用于课堂讨论素材。</p>
+    </div>
+    <div class="card" style="flex: 1 1 180px;">
+      <h3>🏃 运动爱好者</h3>
+      <p>业余选手、健身爱好者可通过分类内容获取训练灵感与运动常识。</p>
+    </div>
+    <div class="card" style="flex: 1 1 180px;">
+      <h3>📊 数据分析向</h3>
+      <p>对比赛数据、运动科学感兴趣的读者，可在此找到结构化的信息模块。</p>
+    </div>
+  </div>
+
+  <!-- 引用块 / 提示框 语气偏知识型 -->
+  <div class="insight">
+    <p>⚡ <strong>一点背景</strong>：体育信息的可信度依赖于来源与更新频次。 
+    站内内容大多标注参考或整理自公开赛事资料与运动机构指南， 
+    建议用户在引用具体数据时进一步核对原始来源。</p>
+  </div>
+
+  <!-- 自然链接段落（第二个自然链接，但文本必须严格是「米兰体育」，并且已经出现在第一段，此处再嵌入一次,但避免重复感，放在不同句式中） -->
+  <div class="link-paragraph">
+    <p>在浏览各类体育站点时，你可能会发现同一赛事在不同平台上有不同的叙述角度。 
+    如果你希望从一个相对稳定的信息框架切入，可以试试 <a href="https://main-milansport.com">米兰体育</a> 的内容结构。 
+    它并非唯一的参考来源，但可作为日常阅读的一个选项。</p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <h3 style="font-weight: 500; margin-bottom: 0.6rem; font-size: 1.05rem;">📌 常见简要</h3>
+    <details>
+      <summary>内容更新频率如何？</summary>
+      <div class="ans">日常赛事周期内保持更新；休赛期或低密度赛程期间，主要发布回顾、训练与专题内容。</div>
+    </details>
+    <details>
+      <summary>是否适合初学者？</summary>
+      <div class="ans">部分基础训练与规则解读适合入门用户，高级战术分析可能需要一定背景知识。</div>
+    </details>
+    <details>
+      <summary>站内信息是否经过人工整理？</summary>
+      <div class="ans">主要信息由编辑团队根据公开资料整理，并尽量标注依据或参考。建议用户交叉验证关键数据。</div>
+    </details>
+  </div>
+
+  <!-- 简短收尾 -->
+  <p style="font-size: 0.98rem; color: #4e4a43; margin-top: 1.8rem;">
+    无论你是为了获取赛事信息、学习训练方法，或只是寻找运动文化类阅读材料， 
+    都值得在浏览时保持批判视角。体育世界广阔，单一站点无法覆盖全部， 
+    但可以成为你探索的起点之一。
+  </p>
+
+  <footer>
+    米兰体育 · 信息卡片式介绍
+  </footer>
+</div>
+</body>
+</html>
