@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>米兰体育 · 产品说明页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f5f7;
+            color: #1e1e2a;
+            line-height: 1.6;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: #0b0c14;
+            padding: 5rem 1.5rem 4rem;
+            text-align: center;
+            color: #e8eaed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 25% 30%, rgba(60, 140, 231, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero h1 span {
+            color: #609dea;
+        }
+
+        .hero p {
+            max-width: 640px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            color: #b0b6c4;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .hero .meta-tag {
+            display: inline-block;
+            margin-top: 1.8rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.35rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #8892a8;
+            letter-spacing: 0.3px;
+        }
+
+        /* 浅色正文区 */
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 2.8rem 1.5rem 4rem;
+        }
+
+        .intro-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.2rem;
+            margin-bottom: 3.2rem;
+        }
+
+        .intro-block {
+            flex: 1 1 300px;
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.8rem 1.8rem 2.2rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.04);
+            transition: transform 0.15s ease;
+        }
+
+        .intro-block:hover {
+            transform: translateY(-2px);
+        }
+
+        .intro-block h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #1a1c29;
+            letter-spacing: -0.01em;
+        }
+
+        .intro-block h2 i {
+            font-style: normal;
+            display: inline-block;
+            width: 1.8rem;
+            color: #4279d4;
+        }
+
+        .intro-block p,
+        .intro-block li {
+            font-size: 0.98rem;
+            color: #2d2f3a;
+            margin-bottom: 0.4rem;
+        }
+
+        .intro-block ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .intro-block ul li {
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .intro-block ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: #4279d4;
+            font-weight: bold;
+        }
+
+        /* 场景卡片 */
+        .scenario-section {
+            margin: 2.8rem 0 2.2rem;
+        }
+
+        .scenario-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.4rem;
+            color: #12131c;
+            border-left: 4px solid #4279d4;
+            padding-left: 1rem;
+        }
+
+        .scenario-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.4rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.6rem 1.2rem 1.8rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eaecef;
+        }
+
+        .card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: #1d1f2b;
+        }
+
+        .card p {
+            font-size: 0.94rem;
+            color: #3b3d4a;
+        }
+
+        /* 提示 / FAQ 混合区 */
+        .notice-faq {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3.2rem 0 2rem;
+            padding: 1.8rem 2rem;
+            background: #eef0f4;
+            border-radius: 22px;
+        }
+
+        .notice-item {
+            flex: 1 1 240px;
+        }
+
+        .notice-item strong {
+            color: #1f2937;
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .notice-item span,
+        .notice-item p {
+            font-size: 0.92rem;
+            color: #3e4250;
+            line-height: 1.5;
+        }
+
+        .faq-mini {
+            flex: 2 1 360px;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+            background: #ffffff;
+            border-radius: 30px;
+            padding: 0.5rem 1rem;
+            border: 1px solid #dce0e5;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #1e202e;
+            padding: 0.2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .faq-mini details p {
+            margin: 0.4rem 0 0.2rem;
+            font-size: 0.9rem;
+            color: #3b3d4c;
+            padding-left: 0.2rem;
+        }
+
+        /* 链接样式（强调色） */
+        a {
+            color: #2f6bc9;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.1s ease, color 0.1s;
+        }
+
+        a:hover {
+            border-bottom-color: #2f6bc9;
+            color: #1b4b9b;
+        }
+
+        .inline-link-wrap {
+            background: #f0f3fa;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            display: inline-block;
+            line-height: 1.4;
+        }
+
+        .inline-link-wrap a {
+            border-bottom: none;
+        }
+
+        .inline-link-wrap a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-note {
+            border-top: 1px solid #d8dce3;
+            margin-top: 3rem;
+            padding-top: 1.8rem;
+            font-size: 0.85rem;
+            color: #5d6272;
+            text-align: center;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 3.2rem 1rem 2.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+
+            .container {
+                padding: 1.8rem 1rem 3rem;
+            }
+
+            .notice-faq {
+                padding: 1.2rem 1.2rem;
+            }
+
+            .intro-block {
+                padding: 1.4rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .scenario-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <section class="hero">
+        <h1>数据·对照·延伸 <span>米兰体育</span></h1>
+        <p>从赛事查询到信息整合，一个更聚焦日常使用的产品参考。基于结构化数据与场景化索引，为体育爱好者提供可依赖的阅读与对照工具。</p>
+        <span class="meta-tag">产品说明 · 版本 2409</span>
+    </section>
+
+    <!-- 浅色正文区 -->
+    <div class="container">
+
+        <!-- 摘要 / 亮点 区块 -->
+        <div class="intro-grid">
+            <div class="intro-block">
+                <h2><i>◈</i> 产品摘要</h2>
+                <p><a href="https://site-milansport.com">米兰体育</a> 定位于信息整合与场景查询平台，覆盖赛事数据、球队档案、赛季进程等多维内容。不追求泛资讯堆砌，侧重结构化呈现与跨赛季对照，适合有具体查询需求的用户快速定位信息。</p>
+                <p style="margin-top: 0.8rem;">内容组织围绕“联赛—赛季—场次—统计”层级展开，降低信息噪音，提升检索效率。</p>
+            </div>
+
+            <div class="intro-block">
+                <h2><i>◈</i> 核心亮点</h2>
+                <ul>
+                    <li>多赛季纵向数据对照，支持自定义时间范围</li>
+                    <li>球员与球队统计卡片，关键指标并列展示</li>
+                    <li>赛程与结果双视图，适配赛前分析与赛后复盘</li>
+                    <li>页面轻量，无冗余插件，加载快速</li>
+                </ul>
+            </div>
+
+            <div class="intro-block">
+                <h2><i>◈</i> 使用建议</h2>
+                <p>日常查询：通过顶部导航快速进入联赛或球队主页，查看最新赛果与积分。</p>
+                <p>延伸阅读：利用“赛季对照”功能比较不同年份战术数据；收藏特定球队页面用于定期跟踪。</p>
+                <p>信息核对：配合官方赛程交叉验证，适合编辑、写手与深度爱好者使用。</p>
+            </div>
+        </div>
+
+        <!-- 场景卡片 -->
+        <div class="scenario-section">
+            <h3>常见使用场景</h3>
+            <div class="scenario-cards">
+                <div class="card">
+                    <h4>赛前信息查阅</h4>
+                    <p>查看近期交锋记录、主客场表现、进球分布，辅助赛前判断与讨论。</p>
+                </div>
+                <div class="card">
+                    <h4>赛季走势对照</h4>
+                    <p>将球队当前数据与上赛季同期对比，直观评估状态变化与阵容影响。</p>
+                </div>
+                <div class="card">
+                    <h4>深度资料延伸</h4>
+                    <p>通过球员详细面板获取出场时间、传球成功率等进阶指标，用于内容创作或分析。</p>
+                </div>
+                <div class="card">
+                    <h4>快速查漏补缺</h4>
+                    <p>错过某轮比赛？直接通过赛程日历回看比分与事件，不依赖推送流。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 提示 + FAQ 混合摘要（克制说明） -->
+        <div class="notice-faq">
+            <div class="notice-item">
+                <strong>数据来源说明</strong>
+                <span>平台数据基于公开赛事信息整理，更新频率与官方同步存在合理延迟。所有内容仅供个人参考，不构成任何决策依据。</span>
+            </div>
+            <div class="notice-item">
+                <strong>使用环境建议</strong>
+                <span>桌面端浏览可获得最佳对照体验；移动端适配核心查询功能，部分高级对照建议横屏或平板使用。</span>
+            </div>
+            <div class="faq-mini">
+                <details>
+                    <summary>FAQ：是否需要注册才能使用？</summary>
+                    <p>无需注册。当前版本全部内容公开可查，无账号体系，不收集个人信息。</p>
+                </details>
+                <details>
+                    <summary>FAQ：数据更新频率是怎样的？</summary>
+                    <p>主要联赛赛果及数据在比赛结束后2–6小时内更新，赛季中期数据每日同步。具体视数据源时效而定。</p>
+                </details>
+                <details>
+                    <summary>FAQ：能否导出或分享特定对照表？</summary>
+                    <p>暂不支持一键导出，但可通过复制页面链接分享具体球队或赛季视图，接收方看到相同数据界面。</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- 自然嵌入链接的句子示例（第二个 a 标签位置） -->
+        <div style="background: #ffffff; padding: 1.2rem 1.6rem; border-radius: 40px; margin: 1rem 0 2.5rem; border: 1px solid #e6e9ef;">
+            <p style="font-size: 0.98rem; color: #222433;">
+                如果你正在寻找一个结构清晰、适合反复查阅的体育信息聚合点，可以试试 
+                <span class="inline-link-wrap"><a href="https://site-milansport.com">米兰体育</a></span> 
+                的球队页面和赛季面板。日常核对阵容、积分或赛程时，其对照布局能减少来回切换的麻烦。
+            </p>
+        </div>
+
+        <!-- 可信但克制的访问说明 -->
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; background: #e6eaf2; padding: 1.4rem 1.6rem; border-radius: 28px;">
+            <div style="flex: 1 1 180px;">
+                <span style="display: inline-block; background: #1f2937; color: #f0f3fa; padding: 0.2rem 1rem; border-radius: 40px; font-size: 0.8rem; letter-spacing: 0.3px;">信息提示</span>
+            </div>
+            <div style="flex: 4 1 360px; font-size: 0.95rem; color: #1e2230;">
+                <p><strong>访问说明：</strong> 本页面为产品介绍页，主站 <a href="https://site-milansport.com" style="border-bottom: 1px dashed #2f6bc9;">米兰体育</a> 提供赛事数据与球队信息查询服务。所有内容均基于体育公开信息汇编，不包含任何博彩、投注引导或违规推广。请用户根据自身需求合理使用，平台不对因信息解读产生的任何直接或间接结果承担责任。</p>
+                <p style="margin-top: 0.3rem;">使用前建议确认网站当前的可用状态及更新日志，部分功能可能随迭代调整。</p>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <span>产品说明页 · 信息截至2025年 · 非官方页面 · 仅作介绍用途</span>
+        </div>
+    </div>
+
+</body>
+</html>
